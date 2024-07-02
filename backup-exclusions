@@ -1,0 +1,12 @@
+/var/tmp/*
+/var/log/journal/*
+/var/cache/*
+/var/lib/flatpak/*
+/var/lib/pacman/*
+/home/*/.cache/*
+/home/*/.cargo/*
+/home/*/.rustup/*
+/home/*/tmp/*
+/home/*/.steam/*
+/home/*/code/**/target/*
+/home/*/src/**/target/*

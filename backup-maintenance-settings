@@ -1,0 +1,35 @@
+# -*- Mode: Shell-script; -*-
+#
+# Settings for backup-maintenance.sh from https://marcusb.org/hacks/backuptools.html
+#
+# This file should be owned by root and chmod 0600.
+#
+
+# true will show output on all backups; false will only show output on failures.
+# This is meant to be cron-friendly in that it should only fire an email when
+# there is a failure.
+export SHOW_OUTPUT='false' 
+
+# If the Borg binary on your backup server isn't 'borg', set it to the correct
+# value here.  Rsync.net, for instance, has Borg 1.2.x installed on their
+# servers as 'borg1'
+#export BORG_REMOTE_PATH=borg1
+
+# Add your backup sources here.
+# The format is add 'borgrepo' 'borg repo pass' 'restic repo' 'restic repo pass'
+# Borg repo and restic repo should be in the form sshuser@sshhost:path_to_repo,
+# e.g.:
+#
+# add 'backupuser@myhost.com:repos/host1' ...
+# add 'backupuser@myhost.com:repos/host2' ...
+#
+# To avoid string interpolation problems with special characters in your repo
+# passwords, use single quotes around each argument.
+add 'host1' 'user@borghost:repo/path/host1' 'borg-password' \
+    'user@restic-host:repo/path/host1' 'restic-pass'
+
+# If you have a system that is only sporadically online, you can set a longer
+# time before the script will complain about not finding new backups, with the
+# sixth parameter being in days:
+add 'mylaptop' 'user@borghost:repo/path/mylaptop' 'borg-password' \
+    'user@restic-host:repo/path/mylaptop' 'restic-pass' 7

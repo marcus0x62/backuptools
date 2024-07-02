@@ -1,0 +1,18 @@
+# -*- Mode: Shell-Script; -*-
+# Settings for backup.sh from https://marcusb.org/hacks/backuptools.html
+#
+# This file should be owned by root and chmod 0600.
+#
+
+# true will show output on all backups; false will only show output on failures.
+# This is meant to be cron-friendly in that it should only fire an email when
+# there is a failure.
+export SHOW_OUTPUT='false' 
+
+export BORG_REPO='ssh://borg-backup/path/to/backup'
+export BORG_PASSPHRASE='MyBorgPassword'
+export RESTIC_PASSWORD=${BORG_PASSPHRASE} # Default to use the Borg password.
+
+# Note: to set the Restic repo, you just need to add the appropriate host alias
+# for 'restic-backup' in your ssh config file; see
+# https://marcusb.org/hacks/backuptools.html#setup for details.

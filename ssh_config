@@ -1,0 +1,11 @@
+# These host aliases should be configured as appropriate for your environment and
+# placed in ~root/.ssh/config
+
+Host borg-backup
+     Hostname BorgBackup.example.com
+     User borg_backup_user
+     IdentityFile ~/.ssh/my_ssh_key_ed25519
+Host restic-backup
+     Hostname ResticBackup.example.com
+     User restic_backup_user
+     IdentityFile ~/.ssh/my_ssh_key_ed25519
