@@ -173,12 +173,12 @@ for i in $(seq 0 $(expr ${IDX} - 1)); do
         restic_backups=$(expr ${restic_backups} + ${m})
     done
 
-    state="NORMAL"
+    state='NORMAL'
 
     if [ ${borg_prune} -ne 0 ] || [ ${borg_compact} -ne 0 ] || \
        [ ${restic_prune} -ne 0 ] || [ ${restic_check} -ne 0 ] || \
        [ ${borg_backups} -lt 1 ] || [ ${restic_backups} -lt 1 ]; then
-        state = "ERROR"
+        state='ERROR'
     fi
 
     log_msg "Overall status for ${current_host}: ${state}"
