@@ -25,6 +25,8 @@
 export PATH=/bin:/sbin:/usr/bin:/usr/sbin
 export LOG=$(mktemp)
 
+set -o pipefail
+
 function log_msg
 {
     msg=$(printf "\n%s %s\n" "$(date)" "$*")
@@ -89,6 +91,8 @@ restic -o rclone.program='ssh restic-backup forced-command' -r rclone: unlock |&
 
 restic -o rclone.program='ssh restic-backup forced-command' -r rclone: backup --verbose \
     --exclude-file=/etc/backup-exclusions --exclude-caches=true /etc /home /root /var |& log_pipe
+
+restic_exit=$?
 
 global_exit=$(( borg_exit > restic_exit ? borg_exit : restic_exit ))
 

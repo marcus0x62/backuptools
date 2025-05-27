@@ -64,6 +64,8 @@ declare -a RESTIC_PATHS
 declare -a RESTIC_PASS
 declare -a DAYS
 
+set -o pipefail
+
 function log_msg
 {
     msg=$(printf "\n%s %s\n" "$(date)" "$*")
